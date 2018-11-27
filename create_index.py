@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 
 import os.path, time, datetime, pytz
 import json
-ignore_list = ['blog/index.html', 'learn/index.html']
+ignore_list = ['blog/index.html', 'learn/index.html', 'blog/template.html', 'learn/template.html']
 
 
 def modification_date(filename):
@@ -42,6 +42,11 @@ def to_index_json(folder, index_json):
         json.dump(index_json, outfile)
 
 
+def order_by_date(index_json):
+    newlist = sorted(index_json, key=lambda k: k['date'])
+    return newlist
+
+###### blog #########
 a = glob.glob("blog/*.html")
 
 index_json = []
@@ -60,9 +65,11 @@ for i in a:
        result = {"filename": i, "date": title_and_subtitle['date'], 'title': title_and_subtitle['title'], 'subtitle': title_and_subtitle['subtitle']}
     index_json.append(result)
 
+index_json = order_by_date(index_json)
 print index_json
 to_index_json('blog', index_json)
 
+###### learn #########
 
 a = glob.glob("learn/*.html")
 
@@ -82,6 +89,7 @@ for i in a:
        result = {"filename": i, "date": title_and_subtitle['date'], 'title': title_and_subtitle['title'], 'subtitle': title_and_subtitle['subtitle']}
     index_json.append(result)
 
+index_json = order_by_date(index_json)
 print index_json
 to_index_json('learn', index_json)
 
