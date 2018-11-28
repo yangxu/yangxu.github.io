@@ -358,6 +358,10 @@ body > .navbar-collapse a {
   border-color: #e78b90;
 }
 
+.avatar-blue {
+  border-color: #8bc5e7;
+}
+
 *::selection {
   background: #e78b90;
   color: #FFFFFF;
