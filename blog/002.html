@@ -7,7 +7,7 @@
 	<link rel="icon" type="image/png" sizes="96x96" href="/static/img/favicon.png">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <title>Second post</title>
+    <title>Django Dumpdata and Loaddata</title>
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <link href="/static/css/bootstrap.css" rel="stylesheet" />
     <link href="/static/css/gaia.css" rel="stylesheet"/>
@@ -70,8 +70,8 @@
             <div class="container">
                 <div class="content">
                     <div class="title-area">
-                        <h1 class="title-modern">Post Title</h1>
-                        <h3>Post sub title</h2>
+                        <h1 class="title-modern">Restore fresh database</h1>
+                        <h3>Restore fresh database</h2>
                         <div class="separator line-separator">♦</div>
                     </div>
                 </div>
@@ -85,16 +85,20 @@
     <div class="section section-our-clients-freebie">
         <div class="container">
             <div class="title-area">
-                <h5 class="subtitle text-gray">Here are some</h5>
-                <h2>Text Text</h2>
+                <h5 class="subtitle text-gray">Restore fresh database</h5>
+                <h2>Restore fresh database</h2>
                 <div class="separator separator-danger">∎</div>
             </div>
 
-            <div class="tab-content">
-                <p class="description">
-                   Text TextText TextText TextText TextText TextText TextText TextText TextText TextText TextText TextText TextText TextText TextText Text
-                </p>
-                <p class="description pull-right">Modification Date: 2018-11-27 08:18:56</p>
+            <div class="tab">
+                <p>Dumpdata: </p>
+                    <pre><code>./manage.py dumpdata > db.json</code></pre>
+                <p>If you loaddata to different database you will get IntegrityError. To fix this problem, you should excluding contenttypes and auth.permissions tables</p>
+                <code>IntegrityError: Problem installing fixture 'db.json': Could not load contenttypes.ContentType(pk=2)</code>
+                    <pre><code>./manage.py dumpdata --exclude auth.permission --exclude contenttypes > db.json</code></pre>
+                <p>Loaddata: </p>
+                    <pre><code>./manage.py loaddata db.json</code></pre>
+                <p class="description pull-right">Modification Date: 2018-11-29 10:18:56</p>
             </div>
 
 
